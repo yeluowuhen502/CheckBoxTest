@@ -24,16 +24,16 @@ public class MyCheckboxAdapter extends BaseAdapter {
     private ArrayList<MyCheckboxBean> arr;
     private CheckBox chb_all_check;
 
-    public MyCheckboxAdapter( Context mContext,ArrayList<MyCheckboxBean> arr,CheckBox chb_all_check) {
+    public MyCheckboxAdapter(Context mContext, ArrayList<MyCheckboxBean> arr, CheckBox chb_all_check) {
         this.mContext = mContext;
-        mInflater=LayoutInflater.from(mContext);
+        mInflater = LayoutInflater.from(mContext);
         this.chb_all_check = chb_all_check;
         this.arr = arr;
     }
 
     @Override
     public int getCount() {
-        return arr.size();
+        return arr == null ? 0 : arr.size();
     }
 
     @Override
@@ -50,14 +50,14 @@ public class MyCheckboxAdapter extends BaseAdapter {
     public View getView(final int position, View convertView, ViewGroup group) {
         MyCheckboxBean bean = arr.get(position);
         ViewHolder viewHolder;
-        if(convertView == null){
-            convertView = mInflater.inflate(R.layout.item_lv_layout,null);
+        if (convertView == null) {
+            convertView = mInflater.inflate(R.layout.item_lv_layout, null);
             viewHolder = new ViewHolder();
             viewHolder.tv_name = (TextView) convertView.findViewById(R.id.tv_name);
             viewHolder.tv_amount = (TextView) convertView.findViewById(R.id.tv_amount);
             viewHolder.chb_manual = (CheckBox) convertView.findViewById(R.id.chb_manual);
             convertView.setTag(viewHolder);
-        }else{
+        } else {
             viewHolder = (ViewHolder) convertView.getTag();
         }
         final int tempPosition = position;
@@ -88,7 +88,8 @@ public class MyCheckboxAdapter extends BaseAdapter {
 
         return convertView;
     }
-    public static class ViewHolder{
+
+    public static class ViewHolder {
         private TextView tv_name;
         private TextView tv_amount;
         private CheckBox chb_manual;
